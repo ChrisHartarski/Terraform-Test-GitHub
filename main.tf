@@ -9,7 +9,7 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = "58ff46fa-63e4-4d9e-9a55-78b409cc2517"
+  # subscription_id = "58ff46fa-63e4-4d9e-9a55-78b409cc2517"
 }
 
 resource "azurerm_resource_group" "taskboard_rg" {
@@ -76,4 +76,5 @@ resource "azurerm_app_service_source_control" "taskboard_source_control" {
   app_id   = azurerm_linux_web_app.taskboard_app.id
   repo_url = var.source_control_repo
   branch   = var.source_control_repo_branch
+  depends_on = [azurerm_linux_web_app.taskboard_app]
 }
