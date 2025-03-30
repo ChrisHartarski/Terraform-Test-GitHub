@@ -35,6 +35,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSSession: true
+        auth-type: SERVICE_PRINCIPAL
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
@@ -52,7 +53,7 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan
+      run: terraform plan -out=tfplan
 
     # Save plan to artifacts
     - name: Save terraform plan to artifacts
